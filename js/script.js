@@ -103,7 +103,15 @@ function darkmode() {
         localStorage.setItem('darkMode', 'dark')
     }
 }
-
+if (theme === 'dark') {
+    $('body').classList.remove('dark')
+    $('.darkbtn').style.display = 'none'
+    $('.lightbtn').style.display = 'flex'
+} else {
+    $('body').classList.add('dark')
+    $('.darkbtn').style.display = 'flex'
+    $('.lightbtn').style.display = 'none'
+}
 
 // call function
 
