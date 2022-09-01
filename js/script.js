@@ -13,18 +13,18 @@ let theme = localStorage.getItem('darkMode')
 // showMenu
 function showMenu(e) {
     e.stopPropagation()
-    if(e.target == this.querySelector('i') || e.target == this) {
+    if (e.target == this.querySelector('i') || e.target == this) {
         bar.classList.toggle('open');
-        if(bar.classList.contains('open')) {
-            $('.mobile__bg').style='opacity: 1; transform: translateX(0);'
+        if (bar.classList.contains('open')) {
+            $('.mobile__bg').style = 'opacity: 1; transform: translateX(0);'
         } else {
-            $('.mobile__bg').style='opacity: 0; transform: translateX(100%);'
+            $('.mobile__bg').style = 'opacity: 0; transform: translateX(100%);'
         }
     }
 }
 
 // function đổi active
-function changeActive (element) {
+function changeActive(element) {
     let listItems = element.parentElement.querySelectorAll('.nav__item')
     for (const item of listItems) {
         item.classList.remove('active')
@@ -42,14 +42,14 @@ function showViewBox(element) {
 }
 
 function itemHandle(element) {
-    element.onclick = ()=> {
+    element.onclick = () => {
         let promise = new Promise((resolve, reject) => {
             resolve(element)
         })
         promise
             .then(changeActive)
             .then(showViewBox)
-            .catch(()=> {
+            .catch(() => {
                 console.log('lỗi')
             })
     }
@@ -57,31 +57,31 @@ function itemHandle(element) {
 
 function callHome() {
     const homes = $$('.home')
-    homes.forEach((home)=> {
+    homes.forEach((home) => {
         showViewBox(home)
     })
 }
 
 function activeHandle() {
-    let active , className
+    let active, className
     let boxs = $$('.box')
-    
-    if(window.scrollY < boxs[0].clientHeight) 
+
+    if (window.scrollY < boxs[0].clientHeight)
         className = '.home'
-    else if (window.scrollY < boxs[0].clientHeight + boxs[1].clientHeight) 
+    else if (window.scrollY < boxs[0].clientHeight + boxs[1].clientHeight)
         className = '.tour'
-    else if (window.scrollY < boxs[0].clientHeight + boxs[1].clientHeight + boxs[2].clientHeight) 
+    else if (window.scrollY < boxs[0].clientHeight + boxs[1].clientHeight + boxs[2].clientHeight)
         className = '.hobbies'
-    else if (window.scrollY < boxs[0].clientHeight + boxs[1].clientHeight + boxs[2].clientHeight + boxs[3].clientHeight) 
+    else if (window.scrollY < boxs[0].clientHeight + boxs[1].clientHeight + boxs[2].clientHeight + boxs[3].clientHeight)
         className = '.info'
-    else 
+    else
         className = '.contact'
     active = $$(className)
     active.forEach(changeActive)
 }
 
 function showBackTop() {
-    if(window.scrollY > 300) {
+    if (window.scrollY > 300) {
         backTop.style = 'opacity: 1; z-index: 5;'
     } else {
         backTop.style = 'opacity: 0; z-index: -100;'
@@ -92,25 +92,22 @@ function showBackTop() {
 // function dark mode
 function darkmode() {
     if (theme === 'dark') {
+        localStorage.setItem('darkMode', 'light')
+    } else {
+        localStorage.setItem('darkMode', 'dark')
+    }
+    showDarkMode()
+}
+function showDarkMode() {
+    if (theme === 'dark') {
         $('body').classList.remove('dark')
         $('.darkbtn').style.display = 'none'
         $('.lightbtn').style.display = 'flex'
-        localStorage.setItem('darkMode', 'light')
     } else {
         $('body').classList.add('dark')
         $('.darkbtn').style.display = 'flex'
         $('.lightbtn').style.display = 'none'
-        localStorage.setItem('darkMode', 'dark')
     }
-}
-if (theme === 'dark') {
-    $('body').classList.remove('dark')
-    $('.darkbtn').style.display = 'none'
-    $('.lightbtn').style.display = 'flex'
-} else {
-    $('body').classList.add('dark')
-    $('.darkbtn').style.display = 'flex'
-    $('.lightbtn').style.display = 'none'
 }
 
 // call function
@@ -119,19 +116,19 @@ bar.onclick = showMenu;
 closee.onclick = showMenu;
 mobileBg.onclick = showMenu;
 
-logos.forEach ((logo) => {
+logos.forEach((logo) => {
     logo.onclick = callHome
 })
 // làm nổi ô chọn
 allItems.forEach(itemHandle);
 
 // back button
-document.onscroll = ()=> {
+document.onscroll = () => {
     activeHandle()
     showBackTop()
 }
 
-backTop.onclick = ()=> {
+backTop.onclick = () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -140,6 +137,7 @@ backTop.onclick = ()=> {
 
 
 // darkmode
-darkmodeBtns.forEach((darkmodeBtn)=> {
+darkmodeBtns.forEach((darkmodeBtn) => {
     darkmodeBtn.onclick = darkmode
 })
+showDarkMode()
