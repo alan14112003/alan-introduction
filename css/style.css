@@ -218,12 +218,12 @@ body.dark .nav__item.active a {
 }
 
 .mobile__bg__close {
-    margin: 0 2px 24px;
+    margin: 0 0 24px;
     font-size: 2.5rem;
-    padding: 0 8px;
     display: flex;
     justify-content: right;
-    height: 50px;
+    height: 40px;
+    align-items: center;
 }
 
 .close {
