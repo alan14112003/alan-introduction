@@ -8,6 +8,7 @@ const backTop = $('.back-top')
 const info = $('#info')
 const logos = $$('.logo')
 const darkmodeBtns = $$('.darkmode')
+let theme = localStorage.getItem('darkMode')
 // function 
 // showMenu
 function showMenu(e) {
@@ -90,7 +91,6 @@ function showBackTop() {
 
 // function dark mode
 function darkmode() {
-    let theme = localStorage.getItem('darkMode')
     if (theme === 'dark') {
         $('body').classList.remove('dark')
         $('.darkbtn').style.display = 'none'
