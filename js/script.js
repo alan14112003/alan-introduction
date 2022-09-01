@@ -96,17 +96,18 @@ function darkmode() {
     } else {
         localStorage.setItem('darkMode', 'dark')
     }
+    theme = localStorage.getItem('darkMode')
     showDarkMode()
 }
 function showDarkMode() {
     if (theme === 'dark') {
-        $('body').classList.remove('dark')
-        $('.darkbtn').style.display = 'none'
-        $('.lightbtn').style.display = 'flex'
-    } else {
         $('body').classList.add('dark')
         $('.darkbtn').style.display = 'flex'
         $('.lightbtn').style.display = 'none'
+    } else {
+        $('body').classList.remove('dark')
+        $('.darkbtn').style.display = 'none'
+        $('.lightbtn').style.display = 'flex'
     }
 }
 
@@ -137,7 +138,7 @@ backTop.onclick = () => {
 
 
 // darkmode
+showDarkMode()
 darkmodeBtns.forEach((darkmodeBtn) => {
     darkmodeBtn.onclick = darkmode
 })
-showDarkMode()
