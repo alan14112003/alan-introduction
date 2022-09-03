@@ -282,6 +282,7 @@ body.dark .nav__item.active a {
     font-size: 1.2rem;
     max-width: 1000px;
     margin: auto;
+    text-align: justify;
 }
 #tour .box__image {
     display: flex;
@@ -324,6 +325,7 @@ body.dark .nav__item.active a {
 #hobbies li {
     font-family: var(--font-text);
     font-size: 1.5rem;
+    text-align: justify;
 }
 
 #info .image__group {

@@ -102,15 +102,27 @@ function darkmode() {
 function showDarkMode() {
     if (theme === 'dark') {
         $('body').classList.add('dark')
-        $('.darkbtn').style.display = 'flex'
-        $('.lightbtn').style.display = 'none'
+        changeDarkModeBtn(true)
     } else {
         $('body').classList.remove('dark')
-        $('.darkbtn').style.display = 'none'
-        $('.lightbtn').style.display = 'flex'
+        changeDarkModeBtn(false)
     }
 }
 
+function changeDarkModeBtn(checkBtn) {
+    if (checkBtn) {
+        $$('.darkbtn').forEach( btn=> 
+            btn.style.display = 'flex')
+        $$('.lightbtn').forEach( btn=> 
+                btn.style.display = 'none')
+    }
+    else {
+        $$('.darkbtn').forEach( btn=> 
+            btn.style.display = 'none')
+        $$('.lightbtn').forEach( btn=> 
+                btn.style.display = 'flex')
+    }
+}
 // call function
 
 bar.onclick = showMenu;
